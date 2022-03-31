@@ -115,6 +115,11 @@ ul {
   flex-grow: 1;
 }
 
+// text
+.primary-text {
+  color: var(--primary-color);
+}
+
 /* other */
 .visually-hidden {
   position: absolute;
