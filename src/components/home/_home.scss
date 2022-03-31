@@ -1,0 +1,49 @@
+.home-main {
+  figure {
+    width: 60%;
+    margin: 0 auto;
+  }
+
+  &--body {
+    width: 90%;
+    margin: 4rem auto;
+
+    .hero-text {
+      font-size: 1.4rem;
+    }
+  }
+}
+
+@media screen and (min-width: 769px) {
+  .home-main {
+    margin-left: 257px;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    align-items: center;
+    height: 90vh;
+
+    figure {
+      grid-column: 2/3;
+      width: 50%;
+    }
+
+    &--body {
+      grid-column: 1/2;
+      grid-row: 1/2;
+
+      .hero-text {
+        font-size: 1.6rem;
+      }
+    }
+  }
+}
+
+@media screen and (min-width: 1024px) {
+  .home-main {
+    &--body {
+      .hero-text {
+        font-size: 1.8rem;
+      }
+    }
+  }
+}
