@@ -19,9 +19,7 @@ export function Home() {
 
         <section>
           <Link to="/task">
-            <button className="btn btn-secondary-outline txt-semibold">
-              GO TO TASK
-            </button>
+            <button className="btn btn-primary txt-semibold">GO TO TASK</button>
           </Link>
         </section>
       </div>
