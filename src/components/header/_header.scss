@@ -1,0 +1,27 @@
+.header {
+  background-color: var(--body-background);
+  position: sticky;
+  top: 0;
+  z-index: 1;
+  border-bottom: 1px solid var(--gray);
+
+  .logo {
+    color: var(--primary-color);
+    font-size: 2rem;
+  }
+
+  .nav {
+    position: absolute;
+    top: 0;
+    left: 0;
+    height: 100vh;
+    background-color: var(--body-background);
+    width: 0;
+    overflow: hidden;
+    box-shadow: 2px 0 3px var(--gray);
+  }
+
+  .nav.show {
+    width: 60vw;
+  }
+}
