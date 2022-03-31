@@ -1,0 +1,24 @@
+.task-main {
+  max-width: 800px;
+  margin: 4rem auto;
+
+  .task-card {
+    width: 90%;
+    margin: 0 auto;
+  }
+  .task-title {
+    font-size: 1.2rem;
+  }
+}
+
+@media screen and (min-width: 769px) {
+  .task-main {
+    margin-left: 257px;
+  }
+}
+
+@media screen and (min-width: 1300px) {
+  .task-main {
+    margin-left: auto;
+  }
+}
