@@ -7,7 +7,11 @@
 
   .logo {
     color: var(--primary-color);
-    font-size: 2rem;
+    font-size: 1.5rem;
+  }
+
+  .pointer-cursor {
+    cursor: pointer;
   }
 
   .nav {
@@ -19,9 +23,59 @@
     width: 0;
     overflow: hidden;
     box-shadow: 2px 0 3px var(--gray);
+    transition: width 0.2s linear;
+    padding-top: 5rem;
+
+    &-links {
+      font-size: 1.2rem;
+      color: var(--text-secondary);
+
+      & li > * {
+        margin-top: 3rem;
+        display: flex;
+        align-items: center;
+        gap: 1rem;
+        white-space: nowrap;
+        flex-shrink: 0;
+      }
+
+      svg {
+        flex-shrink: 0;
+      }
+    }
   }
 
   .nav.show {
     width: 60vw;
+  }
+
+  .close-nav {
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    cursor: pointer;
+  }
+}
+
+@media screen and (min-width: 769px) {
+  .header {
+    position: fixed;
+    left: 0;
+    top: 0;
+    flex-direction: column;
+    padding-left: 0;
+    border-right: 1px solid var(--gray);
+    width: 257px;
+
+    .nav {
+      position: static;
+      width: 100%;
+      box-shadow: none;
+    }
+  }
+
+  .hamburger-menu,
+  .close-nav {
+    display: none;
   }
 }
