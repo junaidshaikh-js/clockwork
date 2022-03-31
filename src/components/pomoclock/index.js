@@ -1,1 +1,1 @@
-export { Pomoclock } from "./Pomoclock";
+export { Pomoclock } from "./pomoclock";
