@@ -14,7 +14,7 @@
   --secondary-font-family: "Roboto", sans-serif;
 
   --light-gray-background: hsla(270, 8%, 95%, 0.4);
-  --body-background: hsl(270, 50%, 99%);
+  --body-background: hsl(210, 23%, 95%);
 
   --white: hsl(0, 0%, 100%);
   --gray: hsl(0, 0%, 50%);
@@ -115,9 +115,30 @@ ul {
   flex-grow: 1;
 }
 
+// cursor
+.pointer-cursor {
+  cursor: pointer;
+}
+
 // text
 .primary-text {
   color: var(--primary-color);
+}
+
+// background
+.bg-white {
+  background-color: var(--white);
+}
+
+// CL overwrite
+.btn.btn-primary {
+  background-color: var(--primary-color);
+  color: var(--white);
+}
+
+.btn.btn-primary-outline:hover {
+  background-color: var(--primary-color);
+  color: var(--white);
 }
 
 /* other */
