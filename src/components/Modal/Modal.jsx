@@ -1,9 +1,9 @@
 import { useState } from "react";
 
 import { useEscape } from "../../hooks";
-import { updateTask } from "../task/utils/task-utils";
 import { addTask } from "./utils/add-task";
 import { HiddenLabel } from "./HiddenLabel";
+import { useTask } from "../../context/task-context";
 
 export function Modal({
   show,
@@ -12,20 +12,23 @@ export function Modal({
   title = "",
   description = "",
   time = "",
-  setTasks,
+  isEditing,
+  taskToEdit,
 }) {
-  const [modalValue, setModalValue] = useState({
+  const [modalValues, setModalValues] = useState({
     title,
     description,
     time,
   });
   const [errorMessage, setErrorMessage] = useState("");
 
+  const { tasks, setTasks } = useTask();
+
   useEscape(setShow);
 
   const handleModalChange = (e) => {
     const { id: key, value } = e.target;
-    setModalValue((m) => {
+    setModalValues((m) => {
       return { ...m, [key]: value };
     });
   };
@@ -42,7 +45,7 @@ export function Modal({
             type="text"
             placeholder="Add Title"
             id="title"
-            value={modalValue.title}
+            value={modalValues.title}
             onChange={handleModalChange}
           />
         </header>
@@ -53,7 +56,7 @@ export function Modal({
             rows="10"
             id="description"
             placeholder="Add Description"
-            value={modalValue.description}
+            value={modalValues.description}
             onChange={handleModalChange}
           ></textarea>
 
@@ -63,7 +66,7 @@ export function Modal({
             type="number"
             className="number"
             placeholder="Time in Minutes"
-            value={modalValue.time}
+            value={modalValues.time}
             onChange={handleModalChange}
           />
         </section>
@@ -75,15 +78,17 @@ export function Modal({
             className="btn btn-primary-outline"
             onClick={() =>
               addTask(
-                modalValue,
+                taskToEdit,
+                tasks,
+                modalValues,
                 setErrorMessage,
                 setTasks,
-                updateTask,
-                onClose
+                onClose,
+                isEditing
               )
             }
           >
-            Add
+            {isEditing ? "Update" : "Add"}
           </button>
         </footer>
 

@@ -1,19 +1,20 @@
 import { useEffect, useState } from "react";
 import { FaPlusCircle } from "react-icons/fa";
+import { useTask } from "../../context/task-context";
 
 import { Modal } from "../Modal/Modal";
 import { ReactPortal } from "../ReactPortal.js";
 import { TaskCard } from "./TaskCard";
-import { getTask } from "./utils/task-utils";
+import { getTasks } from "./utils/task-utils";
 
 export function Task() {
   const [show, setShow] = useState(false);
-  const [tasks, setTasks] = useState([]);
+  const { tasks, setTasks } = useTask();
 
   const toggleModal = () => setShow((s) => !s);
 
   useEffect(() => {
-    setTasks(getTask());
+    setTasks(getTasks());
   }, []);
 
   return (
@@ -31,18 +32,13 @@ export function Task() {
           </button>
         </header>
         {tasks.map((task) => {
-          return <TaskCard title={task.title} key={task.id} />;
+          return <TaskCard task={task} key={task.id} />;
         })}
       </section>
 
       {show ? (
         <ReactPortal>
-          <Modal
-            show={show}
-            onClose={toggleModal}
-            setShow={setShow}
-            setTasks={setTasks}
-          />
+          <Modal show={show} onClose={toggleModal} setShow={setShow} />
         </ReactPortal>
       ) : null}
     </main>

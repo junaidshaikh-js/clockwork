@@ -1,30 +1,47 @@
 import { v4 as uuid } from "uuid";
+import { updateLocalStorage } from "../../task/utils/task-utils";
 
 export const addTask = (
-  modalValue,
+  taskToEdit,
+  tasks,
+  modalValues,
   setErrorMessage,
   setTasks,
-  updateTask,
-  onClose
+  onClose,
+  isEditing
 ) => {
-  const { title, description, time } = modalValue;
+  const { title, description, time } = modalValues;
 
   const isValidated = getValidated(title, description, time, setErrorMessage);
 
   if (!isValidated) return;
 
-  const newTask = {
-    id: uuid(),
-    title,
-    description,
-    time,
-  };
+  let updatedTaskList;
+  if (isEditing) {
+    const { id } = taskToEdit;
+    updatedTaskList = tasks.map((task) => {
+      if (task.id === id) {
+        return {
+          ...taskToEdit,
+          ...modalValues,
+        };
+      }
 
-  setTasks((t) => {
-    return [...t, newTask];
-  });
+      return task;
+    });
+  } else {
+    const newTask = {
+      id: uuid(),
+      title,
+      description,
+      time,
+    };
 
-  updateTask(newTask);
+    updatedTaskList = [...tasks, newTask];
+  }
+
+  setTasks(updatedTaskList);
+  updateLocalStorage(updatedTaskList);
   onClose();
 };
 
