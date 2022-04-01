@@ -46,6 +46,16 @@
     padding: 0.7rem 1.1rem;
   }
 
+  .modal-error {
+    display: block;
+    margin-top: 1rem;
+    text-align: center;
+  }
+
+  .info-danger {
+    color: red;
+  }
+
   ::placeholder {
     color: hsl(0, 0%, 0%);
   }

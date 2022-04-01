@@ -1,14 +1,25 @@
 import { useState } from "react";
 
 import { useEscape } from "../../hooks";
+import { updateTask } from "../task/utils/task-utils";
+import { addTask } from "./utils/add-task";
 import { HiddenLabel } from "./HiddenLabel";
 
-export function Modal({ show, onClose, setShow, title, description, time }) {
+export function Modal({
+  show,
+  onClose,
+  setShow,
+  title = "",
+  description = "",
+  time = "",
+  setTasks,
+}) {
   const [modalValue, setModalValue] = useState({
     title,
     description,
     time,
   });
+  const [errorMessage, setErrorMessage] = useState("");
 
   useEscape(setShow);
 
@@ -60,8 +71,24 @@ export function Modal({ show, onClose, setShow, title, description, time }) {
           <button className="btn btn-secondary-outline" onClick={onClose}>
             Close
           </button>
-          <button className="btn btn-primary-outline">Add</button>
+          <button
+            className="btn btn-primary-outline"
+            onClick={() =>
+              addTask(
+                modalValue,
+                setErrorMessage,
+                setTasks,
+                updateTask,
+                onClose
+              )
+            }
+          >
+            Add
+          </button>
         </footer>
+
+        {/* TODO: update error message with toast */}
+        {<span className="modal-error info-danger">{errorMessage}</span>}
       </article>
     </div>
   );
