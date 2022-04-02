@@ -119,7 +119,7 @@ export function Pomoclock() {
             {clockState.isPaused ? "Resume" : "Pause"}
           </button>
           <button className="btn btn-primary-outline" onClick={handleRestart}>
-            Restart
+            Reset
           </button>
         </div>
 
