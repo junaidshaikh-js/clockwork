@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react";
 import { FaPlusCircle } from "react-icons/fa";
 import { useTask } from "../../context/task-context";
+import { useTitle } from "../../hooks";
 
 import { Modal } from "../Modal/Modal";
 import { ReactPortal } from "../ReactPortal.js";
@@ -16,6 +17,7 @@ export function Task() {
   useEffect(() => {
     setTasks(getTasks());
   }, []);
+  useTitle("Task | Clockwork");
 
   return (
     <main className="task-main p-1">

@@ -3,6 +3,7 @@ import { CircularProgressbar } from "react-circular-progressbar";
 import "react-circular-progressbar/dist/styles.css";
 import { useEffect, useRef, useState } from "react";
 import { FaPlay, FaPause, FaStop } from "react-icons/fa";
+import { useTitle } from "../../hooks";
 
 export function Pomoclock() {
   const location = useLocation();
@@ -86,6 +87,7 @@ export function Pomoclock() {
 
   const percentValue = (seconds / totalSeconds) * 100;
 
+  useTitle(`${minutesLeft}:${secondsLeft} 🎯 | Clockwork`);
   return (
     <main className="pomoclock-main ">
       <section className="pomoclock">

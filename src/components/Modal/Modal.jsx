@@ -1,6 +1,6 @@
 import { useState } from "react";
 
-import { useEscape } from "../../hooks";
+import { useEscape, useTitle } from "../../hooks";
 import { addTask } from "./utils/add-task";
 import { HiddenLabel } from "./HiddenLabel";
 import { useTask } from "../../context/task-context";
@@ -25,6 +25,7 @@ export function Modal({
   const { tasks, setTasks } = useTask();
 
   useEscape(setShow);
+  useTitle("Add task | Clockwork");
 
   const handleModalChange = (e) => {
     const { id: key, value } = e.target;
