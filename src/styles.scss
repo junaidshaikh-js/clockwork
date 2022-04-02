@@ -9,6 +9,7 @@
 
   --text-primary: hsl(0, 0%, 7%);
   --text-secondary: hsl(0, 0%, 34%);
+  --info-color: hsl(210, 23%, 95%);
 
   --primary-font-family: "Montserrat", sans-serif;
   --secondary-font-family: "Roboto", sans-serif;
@@ -18,6 +19,7 @@
 
   --white: hsl(0, 0%, 100%);
   --gray: hsl(0, 0%, 50%);
+  --black: hsl(0, 0%, 0%);
 }
 
 /* for dark theme */
@@ -25,7 +27,8 @@
   --primary-color: hsl(247, 91%, 60%);
 
   --text-primary: hsl(0, 0%, 100%);
-  --text-secondary: hsla(0, 0%, 100%, 0.6);
+  --text-secondary: hsla(0, 0%, 100%);
+  --info-color: hsl(0, 0%, 7%);
 
   --body-background: hsl(0, 0%, 7%);
 }
@@ -134,6 +137,14 @@ ul {
 .btn.btn-primary {
   background-color: var(--primary-color);
   color: var(--white);
+}
+
+.btn.btn-primary-outline {
+  color: var(--text-primary);
+}
+
+.btn.btn-primary-outline.light {
+  color: var(--black);
 }
 
 .btn.btn-primary-outline:hover {

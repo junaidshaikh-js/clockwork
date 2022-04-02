@@ -1,18 +1,28 @@
-import { useState } from "react";
-import { FaBars, FaClock, FaTimes } from "react-icons/fa";
+import { useEffect, useState } from "react";
+import { FaBars, FaClock, FaTimes, FaMoon } from "react-icons/fa";
 import { MdOutlineLightMode } from "react-icons/md";
 import { Link } from "react-router-dom";
 
 export function Header() {
   const [isVisible, setIsVisible] = useState(false);
+  const [theme, setTheme] = useState(JSON.parse(localStorage.getItem("theme")));
 
   function toggleMenu() {
     setIsVisible((v) => !v);
   }
 
-  // TODO: handle theme change
+  useEffect(() => {
+    if (theme) {
+      document.body.classList.add("dark");
+    } else {
+      document.body.classList.remove("dark");
+    }
+
+    localStorage.setItem("theme", JSON.stringify(theme));
+  }, [theme]);
+
   function toggleTheme() {
-    console.log("toggling theme");
+    setTheme((t) => (t === "dark" ? null : "dark"));
   }
 
   return (
@@ -28,14 +38,20 @@ export function Header() {
 
         <ul className="nav-links flex flex-column justify-center ml-2">
           <li>
-            <Link to="/task">
+            <Link to="/task" className="task-link">
               <FaClock /> Task
             </Link>
           </li>
           <li className="pointer-cursor" onClick={toggleTheme}>
-            <span>
-              <MdOutlineLightMode /> Light Mode
-            </span>
+            {theme ? (
+              <span>
+                <FaMoon /> Dark Mode
+              </span>
+            ) : (
+              <span>
+                <MdOutlineLightMode /> Light Mode
+              </span>
+            )}
           </li>
         </ul>
 

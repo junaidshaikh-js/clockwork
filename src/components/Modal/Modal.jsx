@@ -76,7 +76,7 @@ export function Modal({
             Close
           </button>
           <button
-            className="btn btn-primary-outline"
+            className="btn btn-primary-outline light"
             onClick={() =>
               addTask(
                 taskToEdit,
