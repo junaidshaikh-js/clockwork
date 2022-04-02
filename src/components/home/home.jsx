@@ -1,7 +1,10 @@
 import { Link } from "react-router-dom";
 import HomeSvg from "../../assets/HomeSvg.svg";
+import { useTitle } from "../../hooks";
 
 export function Home() {
+  useTitle("Home | Clockwork");
+
   return (
     <main className="home-main p-1 mt-2">
       <figure>
