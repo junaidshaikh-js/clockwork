@@ -9,11 +9,17 @@
   .task-title {
     font-size: 1.2rem;
   }
+
+  .task-link {
+    display: block;
+    flex-grow: 1;
+  }
 }
 
 @media screen and (min-width: 769px) {
-  .task-main {
-    margin-left: 257px;
+  .task-main,
+  .pomoclock-main {
+    margin-left: 300px;
   }
 }
 

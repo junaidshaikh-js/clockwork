@@ -1,0 +1,70 @@
+.pomoclock-main {
+  width: 90vw;
+  max-width: 900px;
+  margin: 2rem auto;
+
+  .pomo-progress-bar {
+    width: 80%;
+    margin: 1rem auto;
+  }
+
+  .clock-action-btn {
+    width: 50%;
+    display: grid;
+    margin: 2rem auto;
+    grid-template-columns: 1fr 1fr;
+    gap: 1rem;
+    grid-template-rows: auto auto;
+    text-align: center;
+
+    & button:last-child {
+      grid-column: 1 / 3;
+    }
+  }
+
+  .info-message {
+    text-align: center;
+    font-size: 1.5rem;
+    color: var(--primary-color);
+    position: absolute;
+    top: 10%;
+    right: 1%;
+    background: black;
+    padding: 0.5rem;
+    border-radius: 5px;
+    animation: show 0.3s linear;
+  }
+}
+
+@keyframes show {
+  0% {
+    opacity: 0;
+  }
+  100% {
+    opacity: 1;
+  }
+}
+
+@media screen and (min-width: 769px) {
+  .pomoclock-main {
+    width: fit-content;
+
+    .task-title {
+      font-size: 2rem;
+    }
+
+    .pomo-progress-bar {
+      width: 60%;
+    }
+  }
+}
+
+@media screen and (min-width: 1024px) {
+  .pomoclock-main {
+    width: 100%;
+    height: 90vh;
+    align-items: center;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+  }
+}
