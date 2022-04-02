@@ -2,6 +2,7 @@ import { useLocation } from "react-router-dom";
 import { CircularProgressbar } from "react-circular-progressbar";
 import "react-circular-progressbar/dist/styles.css";
 import { useEffect, useRef, useState } from "react";
+import { FaPlay, FaPause, FaStop } from "react-icons/fa";
 
 export function Pomoclock() {
   const location = useLocation();
@@ -109,14 +110,24 @@ export function Pomoclock() {
             onClick={handleStart}
             disabled={clockState.isStarted}
           >
-            Start
+            <span className="flex align-center justify-center">
+              <FaPlay className="mr-sm" /> Start
+            </span>
           </button>
           <button
             className="btn btn-secondary"
             onClick={handlePause}
             disabled={!clockState.isStarted}
           >
-            {clockState.isPaused ? "Resume" : "Pause"}
+            {clockState.isPaused ? (
+              <span className="flex align-center justify-center">
+                <FaPause className="mr-sm" /> Resume
+              </span>
+            ) : (
+              <span className="flex align-center justify-center">
+                <FaStop className="mr-sm" /> Pause
+              </span>
+            )}
           </button>
           <button className="btn btn-primary-outline" onClick={handleRestart}>
             Reset
