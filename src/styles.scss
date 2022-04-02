@@ -141,6 +141,11 @@ ul {
   color: var(--white);
 }
 
+.btn.btn-secondary {
+  background-color: var(--secondary-color);
+  color: var(--white);
+}
+
 /* other */
 .visually-hidden {
   position: absolute;
