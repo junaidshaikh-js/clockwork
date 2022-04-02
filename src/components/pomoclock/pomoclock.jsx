@@ -10,6 +10,15 @@ export function Pomoclock() {
   const [seconds, setSeconds] = useState(0);
   const [infoMessage, setInfoMessage] = useState("");
   const [setTimeoutId, setSetTimeoutId] = useState(null);
+  const clockInitalState = {
+    isStarted: false,
+    isPaused: false,
+  };
+  const [clockState, setClockState] = useState(clockInitalState);
+
+  const handleClockState = (key, value) => {
+    setClockState((c) => ({ ...c, [key]: value }));
+  };
 
   const clearMessage = () => {
     if (setTimeoutId) {
@@ -27,11 +36,11 @@ export function Pomoclock() {
   const secondsRef = useRef(0);
 
   const handleStart = () => {
-    if (intervalId.current) {
-      clearInterval(intervalId.current);
-    }
+    if (intervalId.current) clearInterval(intervalId.current);
+
     setInfoMessage("Clock Started");
     clearMessage();
+    handleClockState("isStarted", true);
 
     intervalId.current = setInterval(() => {
       if (secondsRef.current === 0) {
@@ -44,8 +53,16 @@ export function Pomoclock() {
   };
 
   const handlePause = () => {
-    clearInterval(intervalId.current);
-    setInfoMessage("Clock Paused");
+    if (clockState.isPaused) {
+      handleStart();
+      handleClockState("isPaused", false);
+      setInfoMessage("Clock Resumed");
+    } else {
+      clearInterval(intervalId.current);
+      handleClockState("isPaused", true);
+      setInfoMessage("Clock Paused");
+    }
+
     clearMessage();
   };
 
@@ -53,6 +70,7 @@ export function Pomoclock() {
     setSeconds(time * 60);
     clearInterval(intervalId.current);
     setInfoMessage("Clock reset");
+    setClockState(clockInitalState);
     clearMessage();
   };
 
@@ -86,11 +104,19 @@ export function Pomoclock() {
           />
         </div>
         <div className="clock-action-btn">
-          <button className="btn btn-primary" onClick={handleStart}>
+          <button
+            className="btn btn-primary"
+            onClick={handleStart}
+            disabled={clockState.isStarted}
+          >
             Start
           </button>
-          <button className="btn btn-secondary" onClick={handlePause}>
-            Pause
+          <button
+            className="btn btn-secondary"
+            onClick={handlePause}
+            disabled={!clockState.isStarted}
+          >
+            {clockState.isPaused ? "Resume" : "Pause"}
           </button>
           <button className="btn btn-primary-outline" onClick={handleRestart}>
             Restart
