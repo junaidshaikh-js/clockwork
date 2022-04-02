@@ -92,9 +92,12 @@ export function Pomoclock() {
         <div className="pomo-progress-bar">
           <CircularProgressbar
             value={percentValue}
-            text={`${minutesLeft}:${secondsLeft}`}
+            text={`${minutesLeft}m:${secondsLeft}s`}
             counterClockwise={true}
             styles={{
+              text: {
+                fontSize: "1rem",
+              },
               path: {
                 stroke: `hsl(242, 72%, 51%)`,
               },
