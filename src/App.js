@@ -1,6 +1,6 @@
 import { Routes, Route } from "react-router-dom";
 
-import { Home, Task, Pomoclock, Header } from "./components";
+import { Home, Task, Pomoclock, Header, PageNotFound } from "./components";
 import "./styles.scss";
 
 function App() {
@@ -11,6 +11,7 @@ function App() {
         <Route path="/" element={<Home />} />
         <Route path="/task" element={<Task />} />
         <Route path="/pomoclock" element={<Pomoclock />} />
+        <Route path="*" element={<PageNotFound />} />
       </Routes>
     </div>
   );
