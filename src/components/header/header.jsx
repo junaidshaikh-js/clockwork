@@ -28,7 +28,7 @@ export function Header() {
   return (
     <header className="header flex p-1 align-center">
       <div className="hamburger-menu pointer-cursor">
-        <FaBars color="hsl(0, 0%, 7%)" fontSize={"2rem"} onClick={toggleMenu} />
+        <FaBars fontSize={"2rem"} onClick={toggleMenu} />
       </div>
 
       <nav className={`nav ${isVisible && "show"} `}>
