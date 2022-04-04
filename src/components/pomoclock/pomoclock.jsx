@@ -3,23 +3,49 @@ import { CircularProgressbar } from "react-circular-progressbar";
 import "react-circular-progressbar/dist/styles.css";
 import { useEffect, useRef, useState } from "react";
 import { FaPlay, FaPause, FaStop } from "react-icons/fa";
+
 import { useTitle } from "../../hooks";
 
 export function Pomoclock() {
   const location = useLocation();
   const { task } = location.state;
   const { title, description, time } = task;
-  const [seconds, setSeconds] = useState(0);
-  const [infoMessage, setInfoMessage] = useState("");
-  const [setTimeoutId, setSetTimeoutId] = useState(null);
+
   const clockInitalState = {
     isStarted: false,
     isPaused: false,
   };
+
+  const [seconds, setSeconds] = useState(0);
+  const [infoMessage, setInfoMessage] = useState("");
+  const [setTimeoutId, setSetTimeoutId] = useState(null);
   const [clockState, setClockState] = useState(clockInitalState);
+  const [pomoMode, setPomoMode] = useState("focus");
+
+  const intervalId = useRef(null);
+  const secondsRef = useRef(0);
 
   const handleClockState = (key, value) => {
     setClockState((c) => ({ ...c, [key]: value }));
+  };
+
+  const switchMode = () => {
+    if (intervalId.current) clearInterval(intervalId.current);
+
+    setPomoMode((prev) => (prev === "focus" ? "break" : "focus"));
+
+    if (pomoMode === "focus") {
+      setInfoMessage("Break Mode");
+      setSeconds(5 * 60);
+      secondsRef.current = 5 * 60;
+    } else {
+      setInfoMessage("Focus Mode");
+      setSeconds(time * 60);
+      secondsRef.current = time * 60;
+    }
+
+    handleClockState("isStarted", false);
+    clearMessage();
   };
 
   const clearMessage = () => {
@@ -34,9 +60,6 @@ export function Pomoclock() {
     setSetTimeoutId(id);
   };
 
-  const intervalId = useRef(null);
-  const secondsRef = useRef(0);
-
   const handleStart = () => {
     if (intervalId.current) clearInterval(intervalId.current);
 
@@ -47,6 +70,7 @@ export function Pomoclock() {
     intervalId.current = setInterval(() => {
       if (secondsRef.current === 0) {
         clearInterval(intervalId);
+        switchMode();
       } else {
         secondsRef.current--;
         setSeconds(secondsRef.current);
@@ -70,9 +94,11 @@ export function Pomoclock() {
 
   const handleRestart = () => {
     setSeconds(time * 60);
+    secondsRef.current = time * 60;
     clearInterval(intervalId.current);
     setInfoMessage("Clock reset");
     setClockState(clockInitalState);
+    setPomoMode("focus");
     clearMessage();
   };
 
@@ -81,13 +107,18 @@ export function Pomoclock() {
     secondsRef.current = time * 60;
   }, [time]);
 
-  let totalSeconds = time * 60;
+  let totalSeconds = pomoMode === "focus" ? time * 60 : 5 * 60;
   const secondsLeft = seconds % 60;
   const minutesLeft = Math.floor(seconds / 60);
 
   const percentValue = (seconds / totalSeconds) * 100;
 
-  useTitle(`${minutesLeft}:${secondsLeft} 🎯 | Clockwork`);
+  useTitle(
+    `${minutesLeft}:${secondsLeft} ${
+      pomoMode === "focus" ? "🎯" : "☕"
+    } | Clockwork`
+  );
+
   return (
     <main className="pomoclock-main ">
       <section className="pomoclock">
@@ -101,14 +132,21 @@ export function Pomoclock() {
                 fontSize: "1rem",
               },
               path: {
-                stroke: `hsl(242, 72%, 51%)`,
+                stroke:
+                  pomoMode === "focus"
+                    ? "hsl(242, 72%, 51%)"
+                    : "hsl(340, 83%, 73%)",
               },
               trail: {
-                stroke: "hsl(340, 83%, 73%)",
+                stroke:
+                  pomoMode === "focus"
+                    ? "hsl(340, 83%, 73%)"
+                    : "hsl(242, 72%, 51%)",
               },
             }}
           />
         </div>
+
         <div className="clock-action-btn">
           <button
             className="btn btn-primary"
@@ -119,6 +157,7 @@ export function Pomoclock() {
               <FaPlay className="mr-sm" /> Start
             </span>
           </button>
+
           <button
             className="btn btn-secondary"
             onClick={handlePause}
@@ -134,6 +173,7 @@ export function Pomoclock() {
               </span>
             )}
           </button>
+
           <button className="btn btn-primary-outline" onClick={handleRestart}>
             Reset
           </button>
@@ -141,6 +181,7 @@ export function Pomoclock() {
 
         {infoMessage && <span className="info-message">{infoMessage}</span>}
       </section>
+
       <section className="task-details">
         <h1 className="task-title">{title}</h1>
         <p className="task-description txt-md">{description}</p>
