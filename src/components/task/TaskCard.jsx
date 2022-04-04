@@ -34,10 +34,18 @@ export function TaskCard({ task }) {
         </Link>
         <div className="flex">
           <button className="btn" onClick={handleEditTask}>
-            <FaEdit className="pointer-cursor" fontSize="1.1rem" />
+            <FaEdit
+              className="pointer-cursor"
+              fontSize="1.1rem"
+              title="Edit task"
+            />
           </button>
           <button className="btn ml-sm" onClick={() => deleteTask(id)}>
-            <FaTrashAlt className="pointer-cursor" fontSize="1.1rem" />
+            <FaTrashAlt
+              className="pointer-cursor"
+              fontSize="1.1rem"
+              title="Delete Task"
+            />
           </button>
         </div>
 

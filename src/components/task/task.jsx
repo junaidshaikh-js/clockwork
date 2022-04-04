@@ -30,7 +30,11 @@ export function Task() {
         <header className="flex align-center justify-between">
           <h2>To Do List</h2>
           <button className="btn" onClick={toggleModal}>
-            <FaPlusCircle fontSize="1.4rem" color="var(--primary-color)" />
+            <FaPlusCircle
+              fontSize="1.4rem"
+              color="var(--primary-color)"
+              title="Add task"
+            />
           </button>
         </header>
         {tasks.map((task) => {
