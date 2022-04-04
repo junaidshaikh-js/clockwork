@@ -28,7 +28,7 @@ export function Header() {
   return (
     <header className="header flex p-1 align-center">
       <div className="hamburger-menu pointer-cursor">
-        <FaBars fontSize={"2rem"} onClick={toggleMenu} />
+        <FaBars fontSize={"2rem"} onClick={toggleMenu} title="Menu" />
       </div>
 
       <nav className={`nav ${isVisible && "show"} `}>
@@ -56,7 +56,7 @@ export function Header() {
         </ul>
 
         <span className="close-nav">
-          <FaTimes fontSize="1.5rem" onClick={toggleMenu} />
+          <FaTimes fontSize="1.5rem" onClick={toggleMenu} title="close-menu" />
         </span>
       </nav>
     </header>
