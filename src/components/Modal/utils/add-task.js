@@ -60,5 +60,10 @@ function getValidated(title, description, time, setErrorMessage) {
     return false;
   }
 
+  if (time > 60 || time < 0) {
+    setErrorMessage("Time should be in between 0 and 60");
+    return false;
+  }
+
   return true;
 }
