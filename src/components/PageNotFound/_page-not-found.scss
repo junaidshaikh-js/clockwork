@@ -1,0 +1,19 @@
+.page-not-found-main {
+  margin-inline: auto;
+  width: min(90vw, 70.5rem);
+}
+
+@media screen and (min-width: 48em) {
+  .page-not-found-main {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    min-height: 100vh;
+    margin-left: 11.25rem;
+
+    figure {
+      margin-inline: auto;
+      width: 50%;
+    }
+  }
+}
