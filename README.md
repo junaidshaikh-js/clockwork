@@ -24,7 +24,7 @@ Clockwork combines Pomodoro Timer with Task Management, it is a app that will mo
 
 - [React JS](https://reactjs.org/)
 - [Hydrogen Component Library](https://hydrogen-ui.netlify.app/)
-- CSS
+- [SCSS](https://sass-lang.com/)
 - [React Router v6](https://reactrouter.com/)
 
 ---
