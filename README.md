@@ -1,5 +1,5 @@
 <div align="center">
-<h1 align="center">AutoDecore</h1>
+<h1 align="center">Cloclwork</h1>
 <p align="center">
 Clockwork combines Pomodoro Timer with Task Management, it is a app that will motivate you to stay focused and get things done.</p>
 
